@@ -1,83 +1,82 @@
-# Claus
+<div align="center">
+  <img src="assets/brand/claus.png" alt="Personagem e logo do Claus" width="112">
+  <h1>Claus</h1>
+  <p><strong>Sua voz vira texto. O Claus faz companhia.</strong></p>
+  <p>Ditado local para Windows, com chamada por voz e um personagem animado.</p>
+  <p><a href="https://github.com/Hitori998/claus/releases/latest"><strong>BAIXAR PARA WINDOWS</strong></a> · <a href="#como-usar">Como usar</a> · <a href="#requisitos">Requisitos</a> · <a href="https://github.com/Hitori998/claus/issues">Relatar problema</a></p>
+</div>
 
-![Ícone do Claus](assets/brand/claus.png)
+---
 
-Ditado local para Windows com um personagem animado que acompanha você na tela.
+## Instalar
 
-Clique em um campo de texto, diga a chamada configurada, fale e faça uma pausa. O Claus reconhece a fala no computador e insere o resultado na janela original. Não usa API de transcrição, assinatura ou tokens faturados.
+1. **BAIXAR:** abra [a versão mais recente](https://github.com/Hitori998/claus/releases/latest) e, em **Assets**, selecione `Claus-Setup-0.2.0-win-x64.exe`.
+2. **EXECUTAR:** abra o instalador e siga as instruções. Não é necessário instalar Python nem baixar modelos separadamente.
+3. **INICIAR:** abra **Claus** pelo menu Iniciar ou pelo atalho na área de trabalho.
 
-![Expressões do personagem](docs/personagem.png)
+[**Download direto do instalador 0.2.0**](https://github.com/Hitori998/claus/releases/download/v0.2.0/Claus-Setup-0.2.0-win-x64.exe)
 
-## O que ele faz
+O pacote tem aproximadamente **1,2 GB**, pois inclui Python, bibliotecas e os modelos de reconhecimento para uso offline. O instalador ainda **não possui assinatura digital de editor**. O botão **Code → Download ZIP** baixa o código-fonte; para instalar o aplicativo pronto, use **Releases**.
 
-- Microfone selecionável, chamada por voz configurável e conclusão automática por pausa.
-- Transcrição local com Whisper na CPU ou whisper.cpp/Vulkan em GPU compatível.
-- Inserção em outros aplicativos, sem pressionar Enter ou enviar mensagens.
-- Personagem arrastável, com olhos que acompanham o cursor, piscadas e expressões.
-- Carinho com bochechas rosas, sorriso por oito segundos e olhos em espiral após muito movimento.
-- Sono aleatório, despertar sonolento, curiosidade e dança durante reprodução musical em players compatíveis.
-- Tamanhos independentes, altura da onda configurável e transparência com geometria animada.
-- Bandeja do Windows e atalho alternativo **Ctrl + Alt + Espaço**.
-- Interface web opcional para arquivos, transcrição por trechos e exportação TXT/SRT.
+## Como usar
 
-## Instalar a partir do código
+1. **PREPARAR:** selecione a entrada do microfone nas configurações e mantenha a ativação por voz ligada.
+2. **CONFIGURAR:** escolha a palavra ou frase de chamada em português e salve. O padrão de novas instalações é **computador**.
+3. **POSICIONAR:** clique no campo de texto em que deseja escrever.
+4. **DITAR:** diga a chamada, aguarde a animação de escuta e fale.
+5. **CONCLUIR:** faça uma pausa. O Claus reconhece a gravação e insere o texto no campo original.
+6. **CONFERIR:** revise o resultado antes de enviar ou salvar.
 
-O instalador Windows está preparado para publicação em **Releases**, com Python, motores e modelos locais. Ele instala por usuário, cria atalhos e permite desinstalar pelo Windows. Os modelos não ficam no histórico Git; são incluídos somente no pacote de instalação. Abaixo está a alternativa para desenvolvimento a partir do código.
+O atalho **Ctrl + Alt + Espaço** também inicia o ditado. Se o foco mudar, o resultado fica na área de transferência para colagem manual. O Claus não pressiona Enter nem envia mensagens automaticamente.
 
-Requisitos: Windows 10/11 de 64 bits, Python 3.12 de 64 bits e internet na primeira instalação. Os modelos ocupam centenas de MB ou vários GB, conforme a escolha.
+> A transcrição é concluída após cada pausa; o texto não é inserido palavra por palavra enquanto você fala.
 
-1. Baixe ou clone este repositório.
-2. Abra o PowerShell na pasta e execute:
+## O que o Claus faz
 
-```powershell
-.\SETUP.ps1
-```
-
-O script cria `.venv`, instala as dependências e baixa Whisper Small e o modelo Vosk em português. Para instalar o Whisper Turbo na CPU, use `./SETUP.ps1 -Model turbo`.
-
-3. Abra `CLAUS.cmd` ou execute:
-
-```powershell
-.\.venv\Scripts\python.exe desktop.py
-```
-
-A instalação inicial usa a CPU. O download dos modelos exige internet; o aplicativo funciona offline depois de instalados. O procedimento de instalação do código está documentado, mas ainda não foi validado em um Windows limpo.
-
-## Operar
-
-1. **Preparar:** selecione o microfone e mantenha a ativação por voz ligada.
-2. **Configurar:** escolha a chamada em português e clique em **Salvar chamada**. O padrão é `computador`.
-3. **Posicionar:** clique no campo de texto do aplicativo em que deseja escrever.
-4. **Ditar:** diga a chamada, aguarde a onda e fale. Uma pausa conclui a gravação.
-5. **Conferir:** revise o resultado. Se o foco mudar, o texto fica na área de transferência para colagem manual.
-
-Em **Aparência**, ajuste os tamanhos, a altura e o fundo. Arraste o personagem para movê-lo. Clique nele para abrir seu menu. Fechar a janela mantém o aplicativo na bandeja; use **Sair** para encerrá-lo.
-
-O personagem permanece visível durante o ditado. Ele espera pelo menos um minuto após acordar antes de poder dormir novamente. A dança usa o estado publicado pelos players ao Windows, sem gravar áudio nem analisar o ritmo musical.
-
-## GPU opcional
-
-Instale um driver Vulkan compatível. Coloque os arquivos do runtime Windows Vulkan de [whisper.cpp/Lemonade](https://github.com/lemonade-sdk/whisper.cpp-rocm/releases/tag/v1.8.4) em `runtime/vulkan/`, incluindo `whisper-cli.exe` e as DLLs do pacote.
-
-Baixe `ggml-large-v3-turbo-q5_0.bin` de [ggerganov/whisper.cpp](https://huggingface.co/ggerganov/whisper.cpp) para `models/ggml/`. Depois escolha o motor GPU no app. Modelos e executáveis não são distribuídos neste repositório. O desempenho depende da GPU, do driver e do áudio.
-
-## Estrutura
-
-| Arquivo | Responsabilidade |
+| Recurso | Como funciona |
 | --- | --- |
-| `desktop.py` | Interface, captura, ditado e bandeja |
-| `desktop_engine.py` | Motores de reconhecimento locais |
-| `voice_control.py` | Chamada por voz e detecção de pausa |
-| `mascot.py` | Desenho, expressões e animações |
-| `listening_overlay.py` | Personagem e onda de transcrição |
-| `appearance.py` | Configuração visual e prévia |
-| `music_monitor.py` | Leitura do estado dos players no Windows |
-| `app.py` / `static/` | Interface web opcional |
+| **Ditado em outros aplicativos** | Insere o texto no campo que estava selecionado ao iniciar. |
+| **Chamada por voz** | Permite configurar a frase de ativação e o microfone. |
+| **Reconhecimento local** | Usa Whisper Small na CPU ou Whisper Turbo em GPU com Vulkan compatível. |
+| **Sem API de transcrição** | Não exige assinatura, chave de API ou tokens faturados para reconhecer o áudio. |
+| **Personagem na tela** | Pode ser arrastado, acompanha o cursor com os olhos e permanece visível durante o ditado. |
+| **Expressões animadas** | Piscadas, carinho, sorriso, dúvida, tontura, sono, despertar e curiosidade. |
+| **Dança com música** | Reage ao estado de reprodução informado por players compatíveis com os controles de mídia do Windows. |
+| **Aparência configurável** | Ajusta tamanho do personagem, tamanho e altura da animação de escuta e fundo transparente. |
+| **Execução em segundo plano** | Fechar a janela mantém o aplicativo na bandeja. Use **Sair** para encerrar. |
+
+<p align="center"><img src="docs/personagem.png" alt="Expressões e interface do personagem Claus" width="720"></p>
+
+## Requisitos
+
+- **Sistema:** Windows 10 versão 1809 ou posterior / Windows 11, de 64 bits.
+- **Entrada:** um microfone disponível no Windows.
+- **CPU:** funcionamento incluído no instalador, sem necessidade de GPU dedicada.
+- **GPU opcional:** placa e driver compatíveis com Vulkan; selecione o motor GPU no aplicativo. A compatibilidade e a velocidade dependem do hardware e do driver.
+- **Internet:** necessária para baixar o instalador. Os modelos incluídos funcionam offline após a instalação.
+
+O pacote inclui **Whisper Small**, **Whisper Turbo q5_0** e o modelo de chamada **Vosk em português**. Novas instalações começam em CPU. O tamanho do download não corresponde ao consumo de memória durante o uso.
 
 ## Privacidade e limites
 
-Com a ativação por voz ligada, o microfone permanece aberto para detectar a chamada localmente. Áudio de espera não é salvo nem enviado à nuvem. O áudio do ditado é temporário; a transcrição também pode ser copiada para a área de transferência. Preferências locais ficam em `desktop-settings.ini`, ignorado pelo Git.
+A detecção da chamada e o reconhecimento acontecem no computador. **Nenhum áudio é enviado a uma API de transcrição.** Com a ativação por voz ligada, o microfone permanece aberto para detectar a chamada. O áudio de espera não é salvo; o áudio de ditado é temporário.
 
-Ruído, conversas próximas e pausas podem causar erros. A chamada não identifica quem está falando. O ditado desktop insere texto ao concluir cada gravação; não escreve palavra por palavra enquanto você fala. Campos protegidos e aplicativos elevados podem bloquear a inserção.
+Ruído e conversas próximas podem causar erros ou ativações indevidas. A chamada não identifica quem está falando. Campos protegidos e aplicativos executados como administrador podem bloquear a inserção de texto. Revise transcrições que exijam precisão.
 
-Detalhes da versão instalada originalmente: [DESKTOP.md](DESKTOP.md). Referências técnicas: [PESQUISA-TRANSCRITORES.md](PESQUISA-TRANSCRITORES.md). Dependências e recursos de terceiros: [THIRD_PARTY.md](THIRD_PARTY.md).
+## Atualizar, verificar ou remover
+
+- **Atualizar:** baixe o instalador de uma versão nova e execute. Preferências existentes são preservadas.
+- **Verificar o download:** compare o SHA-256 do instalador com o arquivo `.sha256` publicado na mesma versão.
+- **Desinstalar:** abra **Configurações do Windows → Aplicativos → Aplicativos instalados → Claus → Desinstalar**.
+
+```powershell
+Get-FileHash .\Claus-Setup-0.2.0-win-x64.exe -Algorithm SHA256
+```
+
+## Código e suporte
+
+Para desenvolver ou instalar a partir do código, consulte [o guia de desenvolvimento](docs/DESENVOLVIMENTO.md). Essa alternativa exige Python 3.12 e downloads iniciais dos modelos; o procedimento ainda não foi validado em um Windows limpo.
+
+Encontrou um problema? [Abra uma issue](https://github.com/Hitori998/claus/issues) com sua versão do Windows, versão do Claus, motor selecionado e uma descrição dos passos para reproduzir. Não publique gravações pessoais, senhas ou dados sensíveis.
+
+[Notas das versões](https://github.com/Hitori998/claus/releases) · [Dependências e recursos de terceiros](THIRD_PARTY.md) · [Referências técnicas](PESQUISA-TRANSCRITORES.md)
