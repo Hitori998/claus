@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/static/claus-icon.png"><title>Claus — Transcrição local</title><link rel="stylesheet" href="/static/style.css"><link rel="stylesheet" href="/static/live.css"></head>
+<body>
+<header><a class="brand" href="/" aria-label="Claus, início"><img src="/static/claus-icon.png" width="36" height="36" alt="" style="border-radius:8px"> Claus<span class="brand-note">estúdio de transcrição</span></a><span class="privacy"><i></i> Áudio no seu computador</span></header>
+<main>
+<div class="intro"><div><p class="eyebrow">Seu áudio, em palavras.</p><h1>Escute. Registre.<br>Encontre o que importa.</h1></div><p class="intro-note">Uma mesa de trabalho para transformar<br>voz em texto. Local, simples e sem API paga.</p></div>
+<div class="workspace">
+<section class="source" aria-labelledby="source-title"><div class="section-head"><span class="step">1</span><h2 id="source-title">Preparar áudio</h2></div>
+<div class="mode-switch" role="group" aria-label="Origem do áudio"><button id="mode-live" aria-pressed="true">Microfone ao vivo</button><button id="mode-file" aria-pressed="false">Arquivo</button></div>
+<div id="live-panel" class="live-panel"><div class="mic-symbol" aria-hidden="true">◉</div><strong id="live-title">Sua voz, em tempo real.</strong><p>Prévia com contexto enquanto você fala.<br>Ao parar, o Turbo revisa a sessão inteira. A latência depende do computador.</p><meter id="mic-level" min="0" max="1" value="0" aria-label="Nível do microfone"></meter><small id="live-detail">Microfone desligado</small></div>
+<div id="mic-controls"><div class="mic-heading"><label class="field" for="microphone">Entrada do microfone</label><button id="refresh-mics" type="button">Identificar entradas</button></div><select id="microphone"><option value="">Padrão do sistema</option></select><p id="mic-help" class="mic-help">Selecione a entrada. Para exibir os nomes, autorize o microfone.</p></div>
+<div id="file-controls" hidden>
+<label class="drop" id="drop"><input type="file" id="file" accept=".mp3,.wav,.m4a,.mp4,.ogg,.flac,.webm,.aac,.wma,.opus" aria-label="Selecionar arquivo de áudio"><span class="upload-icon" aria-hidden="true">↥</span><strong id="file-name">Solte seu áudio aqui</strong><span id="file-detail">ou clique para selecionar um arquivo</span><small>MP3, WAV, M4A, MP4 e outros · até 500 MB</small></label>
+<audio id="player" controls hidden preload="metadata"></audio>
+</div>
+<label class="field" for="language">Idioma da fala</label><select id="language"><option value="pt">Português</option><option value="auto">Detectar automaticamente</option><option value="en">Inglês</option><option value="es">Espanhol</option><option value="fr">Francês</option><option value="de">Alemão</option><option value="ja">Japonês</option></select>
+<details class="quality-controls"><summary>Qualidade e vocabulário</summary><label class="field" for="live-model">Modelo para a prévia ao vivo</label><select id="live-model"><option value="small">Small — equilibrado</option><option value="turbo">Turbo — priorizar precisão</option><option value="base">Base — mais leve</option></select><label class="review-choice"><input id="final-review" type="checkbox" checked>Revisar com Turbo ao concluir</label><p>Ao vivo: prévia com contexto. Ao parar: o Turbo reconhece a sessão inteira. O áudio fica em memória apenas durante a sessão, por até 30 minutos. Arquivos usam Turbo.</p><label class="field" for="glossary">Nomes e termos esperados</label><textarea id="glossary" rows="2" maxlength="500" placeholder="Nomes próprios, siglas, termos técnicos"></textarea></details>
+<button id="start" class="primary" disabled hidden>Transcrever áudio <span aria-hidden="true">↗</span></button>
+<button id="live-start" class="primary" disabled>Ativar microfone <span aria-hidden="true">●</span></button>
+<div class="status" role="status" aria-live="polite"><span id="status-text">Verificando motor local…</span><progress id="progress" max="100" value="0" hidden></progress></div>
+<div class="engine"><span class="engine-symbol" aria-hidden="true">◈</span><div><strong>Whisper Small + Turbo</strong><span>Prévia e revisão final · local</span></div><span id="engine-state" class="tag">Verificando</span></div>
+<details><summary>Procedimento de operação</summary><ol><li>Conferir a origem do áudio e o idioma.</li><li>Ao vivo: ativar o microfone, falar e acionar “Parar e concluir”. Arquivo: selecionar e transcrever.</li><li>Aguardar a conclusão. Revisar o texto e exportar.</li></ol><p>O áudio fica neste computador. A cópia temporária é removida após o processamento. Revise nomes próprios e trechos com ruído.</p></details>
+</section>
+<section class="document" aria-labelledby="doc-title"><div class="document-toolbar"><div class="section-head"><span class="step">2</span><h2 id="doc-title">Revisar transcrição</h2></div><span id="word-count">0 palavras</span></div>
+<div id="empty"><div class="paper-icon" aria-hidden="true"><span></span><span></span><span></span></div><h3>Espaço para suas palavras.</h3><p>Ative o microfone ou selecione um arquivo.<br>O texto aparecerá aqui, com o tempo de cada trecho.</p><div class="empty-chips"><span>Revisão livre</span><span>Marcação de tempo</span><span>Exportação de legendas</span></div></div>
+<div id="segments" hidden aria-label="Trechos da transcrição"></div>
+<div class="document-footer"><span id="doc-hint">Seus arquivos não são enviados à nuvem.</span><div class="actions"><button id="copy" disabled>Copiar</button><button id="txt" disabled>TXT ↓</button><button id="srt" disabled>SRT ↓</button></div></div>
+</section>
+</div>
+<footer><span>Feito para ouvir com atenção.</span><span>Sem conta. Sem assinatura. Sem tokens de API.</span></footer>
+</main><script src="/static/app.js"></script><script src="/static/streaming.js"></script><script src="/static/live.js"></script>
+</body></html>

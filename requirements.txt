@@ -1,0 +1,6 @@
+faster-whisper==1.2.1
+fastapi==0.121.0
+uvicorn==0.38.0
+python-multipart==0.0.20
+httpx==0.28.1
+av==18.1.0
