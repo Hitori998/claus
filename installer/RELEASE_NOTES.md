@@ -1,6 +1,7 @@
 Claus 0.2.0 para Windows x64.
 
 - Ícone da bandeja carregado como imagens PNG em memória, com tamanhos próprios para o Windows.
+- Nome, ícone e comando de abertura da janela definidos diretamente no Windows, para a barra de tarefas identificar o Claus em vez do Python.
 - Nova identidade Claus, ícone arredondado e interface preta com abas Ditado e Configurações.
 - Personagem permanente durante o ditado; tamanhos, posição vertical e transparência configuráveis.
 - Expressões de carinho, sorriso por oito segundos, dúvida, olhos em espiral, sono, despertar e curiosidade.

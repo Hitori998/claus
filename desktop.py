@@ -24,7 +24,7 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFormLayout, 
     QLabel, QLineEdit, QMainWindow, QMenu, QMessageBox, QPlainTextEdit, QProgressBar,
     QPushButton, QSystemTrayIcon, QVBoxLayout, QWidget, QFrame, QTabWidget, QScrollArea)
 from desktop_engine import DictationEngine, GPU_EXE, GPU_MODEL, paste_allowed
-from desktop_windows import user32, foreground, modifiers_down, paste_shortcut
+from desktop_windows import user32, foreground, modifiers_down, paste_shortcut, set_taskbar_identity
 from voice_control import WakeListener, SpeechEndpoint, prepare_wake_phrase
 from listening_overlay import ListeningOverlay
 from appearance import AppearanceDialog, apply_saved_appearance
@@ -410,4 +410,9 @@ if __name__ == '__main__':
         sys.exit(0)
     ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID('Claus.Ditado.Local')
     app = QApplication(sys.argv); app.setApplicationName('Claus'); app.setApplicationVersion('0.2.0'); app.setStyle('Fusion'); app.setQuitOnLastWindowClosed(False); app.setWindowIcon(app_icon())
-    window = Claus(); window.show(); sys.exit(app.exec())
+    window = Claus()
+    try:
+        set_taskbar_identity(int(window.winId()), ROOT.parent / 'Claus.exe', ROOT / 'assets' / 'brand' / 'claus.ico')
+    except OSError:
+        logging.exception('Não foi possível configurar a identidade do Claus na barra de tarefas')
+    window.show(); sys.exit(app.exec())
